@@ -5,7 +5,7 @@
 
 let numbersOfFilms = +prompt ("How many films did you watch?", " ");
 
-// 2) Создать объект personalMovieDB и в него поместить такие свойства:
+// 2) Создать объект personalMovieDB и в него поместить такие свойства: 
 //     - count - сюда передается ответ на первый вопрос
 //     - movies - в это свойство поместить пустой объект
 //     - actors - тоже поместить пустой объект
@@ -15,10 +15,10 @@ let numbersOfFilms = +prompt ("How many films did you watch?", " ");
 
 let personalMovieDB = {
     count: numbersOfFilms,
-    movies:" ",
-    actors: " ",
-    genres: " ",
-    privat: false
+    movies:{},
+    actors: {},
+    genres: [],
+    privat: false 
 };
 
 // 3) Задайте пользователю по два раза вопросы:
@@ -31,17 +31,14 @@ let personalMovieDB = {
 //     }
 
 
-let nameOfFilm = prompt (" One of the last movies did you watch?", " ");
-let nameOfFilm1 = prompt (" One of the last movies did you watch?", " ");
-                
-let gradeForFilm = +prompt (" How much would you rate it", " ");
-let gradeForFilm1 = +prompt (" How much would you rate it", " ");
-                    
-personalMovieDB.movies =  `${nameOfFilm}: ${gradeForFilm}`;
-personalMovieDB.movies =  `${nameOfFilm1}: ${gradeForFilm1}`
+let a = prompt (" One of the last movies did you watch?", " "),
+    b = +prompt (" How much would you rate it", " "),
+    c = prompt (" One of the last movies did you watch?", " "),
+    d = +prompt (" How much would you rate it", " ");
 
-// personalMovieDB.movies = nameOfFilm;
-// personalMovieDB.movies.nameOfFilm= gradeForFilm;
+                   
+ personalMovieDB.movies[a] = b;
+personalMovieDB.movies[c] = d;
 
 
 
