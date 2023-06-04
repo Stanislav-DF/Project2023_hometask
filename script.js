@@ -36,7 +36,7 @@ function rememberMyFilms() {
     }
 }
 
-rememberMyFilms();
+// rememberMyFilms();
 
 function detectPersonalLevel() {
     if (personalMovieDB.count < 10) {
@@ -50,20 +50,20 @@ function detectPersonalLevel() {
     } 
 }
 
-detectPersonalLevel();
+// detectPersonalLevel();
 
 // 2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
 // false - выводит в консоль главный объект программы
 
-function showMyDB () {
-    if (personalMovieDB.privat != true) {
-        console.log(personalMovieDB)
+function showMyDB (hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
     } else {
-        alert("Access closed")
+        alert("Access closed");
     }
 }
 
-showMyDB ();
+showMyDB (personalMovieDB.privat);
 
 
 // 3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
@@ -72,8 +72,7 @@ showMyDB ();
 
 function writeYourGenres () {
     for (let i = 1; i < 4; i++) {
-        let a = prompt (`Ваш любимый жанр под номером ${i}`, " ");
-        personalMovieDB.genres[i] = a;
+        personalMovieDB.genres[i - 1] = prompt (`Ваш любимый жанр под номером ${i}`, " ");;
 
     }
 }
