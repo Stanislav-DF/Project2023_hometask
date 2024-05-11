@@ -1,27 +1,21 @@
 "use strict";
 
-let numbersOfFilms;
-
-function start () {
-    numbersOfFilms = +prompt ("How many films did you watch?", " ");
-
-    while (numbersOfFilms == ' ' || numbersOfFilms == null || isNaN (numbersOfFilms)) {
-        numbersOfFilms = +prompt ("How many films did you watch?", " ");
-    }
-}
-
-start();
-
 
 let personalMovieDB = {
-    count: numbersOfFilms,
+    count: 0,
     movies:{},
     actors: {},
     genres: [],
-    privat: false 
-};
+    privat: false, 
+    start: function() {
+            personalMovieDB.count = +prompt ("How many films did you watch?", " ");
+        
+            while (personalMovieDB.count == ' ' || personalMovieDB.count == null || isNaN (personalMovieDB.count)) {
+                personalMovieDB.count = +prompt ("How many films did you watch?", " ");
+            }
+        },
 
-function rememberMyFilms() {
+    rememberMyFilms: function() {
     for (let i = 0; i < 2; i++) {
         let a = prompt (" One of the last movies did you watch?", " "),
             b = +prompt (" How much would you rate it", " ");
@@ -34,11 +28,9 @@ function rememberMyFilms() {
             i--;
         }      
     }
-}
+},
 
-// rememberMyFilms();
-
-function detectPersonalLevel() {
+    detectPersonalLevel: function() {
     if (personalMovieDB.count < 10) {
         console.log("Просмотрено довольно мало фильмов");
     } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30 ) {
@@ -48,35 +40,47 @@ function detectPersonalLevel() {
     } else {
         document.write('Произошла ошибка');
     } 
-}
-
-// detectPersonalLevel();
-
-// 2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
-// false - выводит в консоль главный объект программы
-
-function showMyDB (hidden) {
+},
+    showMyDB: function (hidden) {
     if (!hidden) {
         console.log(personalMovieDB);
     } else {
         alert("Access closed");
     }
-}
-
-showMyDB (personalMovieDB.privat);
-
-
-// 3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
-// "Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
-// genres
-
-function writeYourGenres () {
+},
+    toggleVisibleMyDB:  function(){
+        if (personalMovieDB.privat){
+            personalMovieDB.privat = false;
+        } else {
+            personalMovieDB.privat = true;
+        }
+    },
+    writeYourGenres: function() {
     for (let i = 1; i < 4; i++) {
-        personalMovieDB.genres[i - 1] = prompt (`Ваш любимый жанр под номером ${i}`, " ");;
+        let genre = prompt (`Ваш любимый жанр под номером ${i}`);
+        
+        if(genre === '' || genre === null){
+            console.log('Вы ввели некорректные данные или не ввели их вообще');
+           i--; 
+        } else {
+            personalMovieDB.genres[i - 1] = genre;
+        }
 
+        // Другой метод
+// let genres = prompt (`Введите ваши любимые жанры через запятую`);
+//  if (genres === " " || genres === null) {
+//  console.log('Не корректно);
+// } else {
+//  personalMovieDB.genres = genres.split(' , ');
+//  personalMovieDB.genres.sort();
+// }
+    } 
+    personalMovieDB.genres.forEach((item, i) => {
+        console.log(`Любимый жанр ${i + 1} - это ${item}`)
+    });
     }
-}
+};
 
-writeYourGenres();
+
 
 // console.log(personalMovieDB);
